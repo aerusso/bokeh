@@ -345,55 +345,11 @@ function, with the plot it generates shown below:
 A minimal example follows, demonstrating a proper import of the libraries,
 and dynamic creation and modification of plots.
 
-.. code-block:: html
+.. include:: bokehjs-example.html
+   :code: javascript
 
-    <!doctype html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <title>Complete Example</title>
-    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.css" type="text/css" />
-    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
-    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.12.5.min.js"></script>
-    <!-- The order of CSS and JS imports above is important. -->
-    </head>
+The code above generates the following page:
 
-    <body>
+.. raw:: html
 
-    <button onclick="addPoint()">Add some data!</button><br/>
-
-    <div>
-    <script type="text/javascript">
-
-    // arrays to hold data
-    var source = new Bokeh.ColumnDataSource({
-        data: { x: [], y: [] }
-    });
-
-    // make the plot and add some tools
-    var tools = "pan,crosshair,wheel_zoom,box_zoom,reset,save";
-
-    var plot = Bokeh.Plotting.figure({title:'Example of Random data', tools: tools, height: 300, width: 300});
-
-    var scatterData = plot.line({ field: "x" }, { field: "y" }, {
-        source: source,
-        line_width: 2
-    });
-
-    // Show the plot, appending it to the end of the current
-    // section of the document we are in.
-    Bokeh.Plotting.show(plot,document.currentScript.parentElement);
-
-    function addPoint() {
-        // The data can be added, but generally all fields must be the
-        // same length.
-        source.data.x.push(Math.random());
-        source.data.y.push(Math.random());
-        // Also, the DataSource object must be notified when it has changed.
-        source.trigger('change');
-    }
-
-    </script>
-    </div>
-    </body>
-    </html>
+   <iframe src="bokehjs-example.html" width="400" height="400"></iframe>
